@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 type Chapter = {
   id: string;
@@ -14,28 +15,30 @@ export default function SideBar({ chapters }: Props) {
   const [chaptersOpen, setChaptersOpen] = useState(true);
 
   return (
-    <aside className="w-64 flex flex-col flex-1 border-r border-gray-200 p-4 text-sm max-w-fit">
+    <aside className="flex flex-col flex-1 border-r border-gray-200 p-4 text-sm min-w-[250px] max-w-fit">
       {/* Workspaces */}
       <div className="mb-4">
         <button
           onClick={() => setWorkspacesOpen((v) => !v)}
-          className="flex w-full items-center justify-between font-medium text-gray-700 hover:text-black"
+          className="flex w-full items-center justify-between font-medium text-gray-500 hover:text-black"
         >
           Workspaces
           <span className="text-xs">{workspacesOpen ? "▾" : "▸"}</span>
         </button>
 
         {workspacesOpen && (
-          <ul className="mt-2 space-y-1 pl-2">
+          <ul className="mt-2 space-y-1 dropdown-menu">
             <li>
-              <button className="hover:underline text-left w-full">
-                Personal
-              </button>
+              <Link to="/" className="text-left w-full">
+                <span>O</span>
+                Manuscript
+              </Link>
             </li>
             <li>
-              <button className="hover:underline text-left w-full">
-                Team Alpha
-              </button>
+              <Link to="/prompts" className="text-left w-full">
+                <span>O</span>
+                Writing prompts
+              </Link>
             </li>
           </ul>
         )}
@@ -45,23 +48,24 @@ export default function SideBar({ chapters }: Props) {
       <div>
         <button
           onClick={() => setChaptersOpen((v) => !v)}
-          className="flex w-full items-center justify-between font-medium text-gray-700 hover:text-black"
+          className="flex w-full items-center gap-x-3 font-medium text-gray-500 hover:text-black"
         >
-          Chapters
           <span className="text-xs">{chaptersOpen ? "▾" : "▸"}</span>
+          Chapters
         </button>
 
         {chaptersOpen && (
-          <ul className="mt-2 space-y-1 pl-2">
+          <ul className="mt-2 space-y-1 dropdown-menu">
             {chapters.length === 0 && (
               <li className="text-gray-400 italic">No chapters</li>
             )}
 
             {chapters.map((chapter) => (
               <li key={chapter.id}>
-                <button className="hover:underline text-left w-full">
+                <Link to="/" className="text-left w-full">
+                  <span>O</span>
                   {chapter.title}
-                </button>
+                </Link>
               </li>
             ))}
           </ul>

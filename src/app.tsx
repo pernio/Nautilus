@@ -10,7 +10,7 @@ import Prompts from "./pages/Prompts";
 
 const App = () => (
   <HashRouter>
-    <div className="flex flex-col min-h-screen font-[system-ui, sans-serif] scroll-smooth">
+    <div className="flex flex-col min-h-screen font-super scroll-smooth">
       <Header />
 
       <div className="flex flex-row grow">
