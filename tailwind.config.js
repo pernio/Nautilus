@@ -3,9 +3,6 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
-      fontFamily: {
-        manuscript: ['"Crimson Pro"', "serif"],
-      },
       colors: {
         bg: "rgb(var(--color-bg) / <alpha-value>)",
         text: "rgb(var(--color-text) / <alpha-value>)",

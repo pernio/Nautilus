@@ -1,10 +1,12 @@
 export default function Manuscript() {
   return (
     <>
-      <h1 className="text-2xl font-bold font-manuscript">Manuscript</h1>
+      <h1 className="text-2xl text-[36px] font-serif px-10 py-8">
+        The Meeting
+      </h1>
       <textarea
-        className="w-full h-[80vh] mt-4 p-2 focus:outline-none font-manuscript text-lg leading-7"
-        placeholder="Start writing your manuscript here..."
+        className="flex-1 w-full text-[20px] p-2 px-10 focus:outline-none font-serif text-lg leading-7 resize-none placeholder:italic"
+        placeholder="Begin writing your story..."
       />
     </>
   );

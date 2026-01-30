@@ -22,7 +22,7 @@ const App = () => (
           ]}
         />
 
-        <main className="flex-1 p-5 overflow-auto transition-all duration-300 ease-out">
+        <main className="flex flex-col flex-1 overflow-auto">
           <Routes>
             <Route path="/" element={<Manuscript />} />
             <Route path="/prompts" element={<Prompts />} />
