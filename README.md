@@ -5,6 +5,7 @@ Simple platform for writers.
 ## Features
 
 - Manuscript to write stories
+- Multi language support
 - Local storage for offline-support
 - Character sheet
 - Progress charts to keep track of your wordcount

@@ -1,18 +1,42 @@
 import * as ReactDOM from "react-dom/client";
+import { HashRouter, Routes, Route } from "react-router-dom";
+
 import "./i18n";
 import Header from "./components/general/Header";
+import SideBar from "./components/general/SideBar";
+
+import Manuscript from "./pages/Manuscript";
+import Prompts from "./pages/Prompts";
 
 const App = () => (
-  <div className="flex items-center justify-center min-h-screen bg-gray-100">
-    <Header />
-    <div className="text-center mx-10">
-      <h1 className="text-4xl font-bold text-gray-800">Nautilus</h1>
+  <HashRouter>
+    <div className="flex flex-col min-h-screen font-[system-ui, sans-serif] scroll-smooth">
+      <Header />
+
+      <div className="flex flex-row grow">
+        <SideBar
+          chapters={[
+            { id: "1", title: "Introduction" },
+            { id: "2", title: "Getting Started" },
+            { id: "3", title: "Advanced Topics" },
+          ]}
+        />
+
+        <main className="flex-1 p-5 overflow-auto transition-all duration-300 ease-out">
+          <Routes>
+            <Route path="/" element={<Manuscript />} />
+            <Route path="/prompts" element={<Prompts />} />
+          </Routes>
+        </main>
+      </div>
     </div>
-  </div>
+  </HashRouter>
 );
 
 function render() {
-  const root = ReactDOM.createRoot(document.getElementById("app"));
+  const root = ReactDOM.createRoot(
+    document.getElementById("app") as HTMLElement,
+  );
   root.render(<App />);
 }
 
