@@ -1,42 +1,58 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ChapterProgress } from "../../config/ChapterProgress";
 
 type Chapter = {
   id: string;
   title: string;
+  progress: ChapterProgress;
 };
 
 type Props = {
+  workspaceOpen: boolean;
+  chaptersOpen: boolean;
+  toggleWorkspace: () => void;
+  toggleChapters: () => void;
   chapters: Chapter[];
 };
 
-export default function SideBar({ chapters }: Props) {
-  const [workspacesOpen, setWorkspacesOpen] = useState(true);
-  const [chaptersOpen, setChaptersOpen] = useState(true);
-
+export default function SideBar({
+  workspaceOpen,
+  chaptersOpen,
+  toggleWorkspace,
+  toggleChapters,
+  chapters,
+}: Props) {
   return (
     <aside className="flex flex-col flex-1 border-r border-gray-200 p-4 text-sm min-w-[250px] max-w-fit">
       {/* Workspaces */}
       <div className="mb-4">
         <button
-          onClick={() => setWorkspacesOpen((v) => !v)}
-          className="flex w-full items-center justify-between font-medium text-gray-500 hover:text-black"
+          onClick={toggleWorkspace}
+          className="flex w-full items-center gap-x-3 font-medium text-gray-500 hover:text-black"
         >
-          Workspaces
-          <span className="text-xs">{workspacesOpen ? "▾" : "▸"}</span>
+          <span
+            className={
+              "material-symbols-rounded icon " +
+              (workspaceOpen ? "rotate-90" : "")
+            }
+          >
+            keyboard_arrow_right
+          </span>
+          Workspace
         </button>
 
-        {workspacesOpen && (
+        {workspaceOpen && (
           <ul className="mt-2 space-y-1 dropdown-menu">
             <li>
               <Link to="/" className="text-left w-full">
-                <span>O</span>
+                <span className="material-symbols-rounded icon">contract</span>
                 Manuscript
               </Link>
             </li>
             <li>
               <Link to="/prompts" className="text-left w-full">
-                <span>O</span>
+                <span className="material-symbols-rounded icon">lightbulb</span>
                 Writing prompts
               </Link>
             </li>
@@ -47,10 +63,17 @@ export default function SideBar({ chapters }: Props) {
       {/* Chapters */}
       <div>
         <button
-          onClick={() => setChaptersOpen((v) => !v)}
+          onClick={toggleChapters}
           className="flex w-full items-center gap-x-3 font-medium text-gray-500 hover:text-black"
         >
-          <span className="text-xs">{chaptersOpen ? "▾" : "▸"}</span>
+          <span
+            className={
+              "material-symbols-rounded icon " +
+              (chaptersOpen ? "rotate-90" : "")
+            }
+          >
+            keyboard_arrow_right
+          </span>
           Chapters
         </button>
 
@@ -63,13 +86,38 @@ export default function SideBar({ chapters }: Props) {
             {chapters.map((chapter) => (
               <li key={chapter.id}>
                 <Link to="/" className="text-left w-full">
-                  <span>O</span>
+                  <span
+                    className="material-symbols-rounded icon"
+                    style={
+                      chapter.progress === ChapterProgress.Finished
+                        ? { color: "#21c45d" }
+                        : chapter.progress === ChapterProgress.InProgress
+                          ? { color: "#fbbf24" }
+                          : { color: "#9ca3af" }
+                    }
+                  >
+                    {chapter.progress === ChapterProgress.Finished
+                      ? "check_circle"
+                      : chapter.progress === ChapterProgress.InProgress
+                        ? "progress_activity"
+                        : "radio_button_unchecked"}
+                  </span>
                   {chapter.title}
                 </Link>
               </li>
             ))}
           </ul>
         )}
+      </div>
+      <div>
+        <ul className="space-y-1 dropdown-menu">
+          <li>
+            <Link to="/" className="text-left w-full">
+              <span className="material-symbols-rounded icon">settings</span>
+              Settings
+            </Link>
+          </li>
+        </ul>
       </div>
     </aside>
   );

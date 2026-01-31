@@ -7,31 +7,62 @@ import SideBar from "./components/general/SideBar";
 
 import Manuscript from "./pages/Manuscript";
 import Prompts from "./pages/Prompts";
+import { ChapterProgress } from "./config/ChapterProgress";
+import useMenu from "./hooks/useMenu";
 
-const App = () => (
-  <HashRouter>
-    <div className="flex flex-col min-h-screen font-super scroll-smooth">
-      <Header />
+const App = () => {
+  const {
+    sideBarOpen,
+    workspaceOpen,
+    chaptersOpen,
+    toggleSideBar,
+    toggleWorkspace,
+    toggleChapters,
+  } = useMenu();
 
-      <div className="flex flex-row grow">
-        <SideBar
-          chapters={[
-            { id: "1", title: "Introduction" },
-            { id: "2", title: "Getting Started" },
-            { id: "3", title: "Advanced Topics" },
-          ]}
-        />
+  return (
+    <HashRouter>
+      <div className="flex flex-col min-h-screen font-super scroll-smooth">
+        <Header sideBarOpen={sideBarOpen} toggleSideBar={toggleSideBar} />
 
-        <main className="flex flex-col flex-1 overflow-auto">
-          <Routes>
-            <Route path="/" element={<Manuscript />} />
-            <Route path="/prompts" element={<Prompts />} />
-          </Routes>
-        </main>
+        <div className="flex flex-row grow">
+          {sideBarOpen && (
+            <SideBar
+              workspaceOpen={workspaceOpen}
+              chaptersOpen={chaptersOpen}
+              toggleWorkspace={toggleWorkspace}
+              toggleChapters={toggleChapters}
+              chapters={[
+                {
+                  id: "1",
+                  title: "Introduction",
+                  progress: ChapterProgress.Finished,
+                },
+                {
+                  id: "2",
+                  title: "Getting Started",
+                  progress: ChapterProgress.InProgress,
+                },
+                {
+                  id: "3",
+                  title: "Advanced Topics",
+                  progress: ChapterProgress.NotStarted,
+                },
+              ]}
+            />
+          )}
+
+          <main className="flex flex-col flex-1 overflow-auto">
+            <Routes>
+              <Route path="/" element={<Manuscript />} />
+              <Route path="/prompts" element={<Prompts />} />
+            </Routes>
+          </main>
+        </div>
       </div>
-    </div>
-  </HashRouter>
-);
+    </HashRouter>
+  );
+};
 
 function render() {
   const root = ReactDOM.createRoot(

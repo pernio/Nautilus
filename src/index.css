@@ -1,25 +1,43 @@
 @import "tailwindcss";
+@import "material-symbols/rounded.css";
+/* Check icons here https://fonts.google.com/icons?icon.style=Rounded */
 
 @layer base {
   .font-serif {
     font-family: "Crimson Pro", Georgia, serif;
   }
 
-  .font-super {
+  /*.font-super {
     font-family: "inter", sans-serif;
-  }
+  }*/
 
-  .dropdown-menu {
-    a {
-      display: flex;
-      flex-direction: row;
-      column-gap: 0.75rem;
-      padding: 10px 12px;
+  aside {
+    button {
+      cursor: pointer;
+    }
 
-      &:hover {
-        background-color: #e7e9f9;
-        color: #3e50f4;
+    .dropdown-menu {
+      a {
+        display: flex;
+        flex-direction: row;
+        column-gap: 0.75rem;
+        padding: 10px 12px;
         border-radius: 0.75rem;
+
+        &:hover {
+          background-color: #f3f4f6;
+        }
+
+        .active {
+          background-color: #e7e9f9;
+          color: #3e50f4;
+        }
+
+        .icon {
+          font-size: 20px !important;
+          display: flex !important;
+          align-items: center;
+        }
       }
     }
   }
