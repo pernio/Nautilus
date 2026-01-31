@@ -24,7 +24,7 @@ export default function SideBar({
   chapters,
 }: Props) {
   return (
-    <aside className="flex flex-col flex-1 border-r border-gray-200 p-4 text-sm min-w-[250px] max-w-fit">
+    <aside className="flex flex-col flex-1 border-r border-gray-200 p-4 text-sm min-w-[250px] max-w-fit overflow-y-auto">
       {/* Workspaces */}
       <div className="mb-4">
         <button
@@ -109,12 +109,21 @@ export default function SideBar({
           </ul>
         )}
       </div>
+      <div className="flex-grow" />
       <div>
         <ul className="space-y-1 dropdown-menu">
           <li>
             <Link to="/" className="text-left w-full">
               <span className="material-symbols-rounded icon">settings</span>
               Settings
+            </Link>
+          </li>
+          <li>
+            <Link to="/" className="text-left w-full">
+              <span className="material-symbols-rounded icon">
+                deployed_code
+              </span>
+              Developer
             </Link>
           </li>
         </ul>

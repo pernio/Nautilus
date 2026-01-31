@@ -22,7 +22,7 @@ const App = () => {
 
   return (
     <HashRouter>
-      <div className="flex flex-col min-h-screen font-super scroll-smooth">
+      <div className="flex flex-col h-screen max-h-dvh font-super scroll-smooth">
         <Header sideBarOpen={sideBarOpen} toggleSideBar={toggleSideBar} />
 
         <div className="flex flex-row grow">
