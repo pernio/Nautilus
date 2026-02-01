@@ -28,9 +28,13 @@
           background-color: #f3f4f6;
         }
 
-        .active {
+        &.active-hard {
           background-color: #e7e9f9;
           color: #3e50f4;
+        }
+
+        &.active-soft {
+          background-color: #f1f2fe;
         }
 
         .icon {

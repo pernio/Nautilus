@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ChapterProgress } from "../../config/ChapterProgress";
 
 type Chapter = {
@@ -45,16 +44,28 @@ export default function SideBar({
         {workspaceOpen && (
           <ul className="mt-2 space-y-1 dropdown-menu">
             <li>
-              <Link to="/" className="text-left w-full">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  "text-left w-full flex items-center gap-x-2 " +
+                  (isActive && "active-hard")
+                }
+              >
                 <span className="material-symbols-rounded icon">contract</span>
                 Manuscript
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/prompts" className="text-left w-full">
+              <NavLink
+                to="/prompts"
+                className={({ isActive }) =>
+                  "text-left w-full flex items-center gap-x-2 " +
+                  (isActive && "active-hard")
+                }
+              >
                 <span className="material-symbols-rounded icon">lightbulb</span>
                 Writing prompts
-              </Link>
+              </NavLink>
             </li>
           </ul>
         )}
@@ -85,7 +96,13 @@ export default function SideBar({
 
             {chapters.map((chapter) => (
               <li key={chapter.id}>
-                <Link to="/" className="text-left w-full">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    "text-left w-full flex items-center gap-x-2 " +
+                    (isActive && "active-soft")
+                  }
+                >
                   <span
                     className="material-symbols-rounded icon"
                     style={
@@ -103,7 +120,7 @@ export default function SideBar({
                         : "radio_button_unchecked"}
                   </span>
                   {chapter.title}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -113,18 +130,30 @@ export default function SideBar({
       <div>
         <ul className="space-y-1 dropdown-menu">
           <li>
-            <Link to="/" className="text-left w-full">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                "text-left w-full flex items-center gap-x-2 " +
+                (isActive && "active-hard")
+              }
+            >
               <span className="material-symbols-rounded icon">settings</span>
               Settings
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/" className="text-left w-full">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                "text-left w-full flex items-center gap-x-2 " +
+                (isActive && "active-hard")
+              }
+            >
               <span className="material-symbols-rounded icon">
                 deployed_code
               </span>
               Developer
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>

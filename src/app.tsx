@@ -10,6 +10,8 @@ import Prompts from "./pages/Prompts";
 import { ChapterProgress } from "./config/ChapterProgress";
 import useMenu from "./hooks/useMenu";
 
+import useChapters from "./hooks/useChapters";
+
 const App = () => {
   const {
     sideBarOpen,
@@ -19,6 +21,9 @@ const App = () => {
     toggleWorkspace,
     toggleChapters,
   } = useMenu();
+
+  const bookId = "book_7f92c1";
+  const chapters = useChapters(bookId);
 
   return (
     <HashRouter>
@@ -32,29 +37,13 @@ const App = () => {
               chaptersOpen={chaptersOpen}
               toggleWorkspace={toggleWorkspace}
               toggleChapters={toggleChapters}
-              chapters={[
-                {
-                  id: "1",
-                  title: "Introduction",
-                  progress: ChapterProgress.Finished,
-                },
-                {
-                  id: "2",
-                  title: "Getting Started",
-                  progress: ChapterProgress.InProgress,
-                },
-                {
-                  id: "3",
-                  title: "Advanced Topics",
-                  progress: ChapterProgress.NotStarted,
-                },
-              ]}
+              chapters={chapters}
             />
           )}
 
           <main className="flex flex-col flex-1 overflow-auto">
             <Routes>
-              <Route path="/" element={<Manuscript />} />
+              <Route path="/" element={<Manuscript bookId={bookId} />} />
               <Route path="/prompts" element={<Prompts />} />
             </Routes>
           </main>

@@ -6,6 +6,7 @@ import { MakerRpm } from "@electron-forge/maker-rpm";
 import { WebpackPlugin } from "@electron-forge/plugin-webpack";
 
 import { mainConfig } from "./webpack.main.config";
+import { preloadConfig } from "./webpack.preload.config";
 import { rendererConfig } from "./webpack.renderer.config";
 
 const config: ForgeConfig = {
@@ -15,6 +16,7 @@ const config: ForgeConfig = {
     new MakerSquirrel({}, ["win32"]),
     new MakerZIP({}, ["darwin"]),
     new MakerDeb({}, ["linux"]),
+    new MakerRpm({}, ["linux"]),
   ],
   plugins: [
     new WebpackPlugin({
@@ -28,6 +30,7 @@ const config: ForgeConfig = {
             name: "main_window",
             preload: {
               js: "./src/preload.ts",
+              config: preloadConfig, // ✅ THIS is the fix
             },
           },
         ],
