@@ -45,4 +45,14 @@
       }
     }
   }
+
+  /* Prompts page */
+  .active-prompt {
+    background-color: #3e50f4;
+    color: white;
+
+    &:hover {
+      background-color: #2a3ab9;
+    }
+  }
 }

@@ -91,7 +91,7 @@ export default function SideBar({
         {chaptersOpen && (
           <ul className="mt-2 space-y-1 dropdown-menu">
             {chapters.length === 0 && (
-              <li className="text-gray-400 italic">No chapters</li>
+              <li className="text-gray-400 italic text-center">No chapters</li>
             )}
 
             {chapters.map((chapter) => (
