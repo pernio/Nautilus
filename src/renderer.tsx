@@ -43,16 +43,12 @@ function App() {
 
   return (
     <main className="flex min-h-screen flex-col text-stone-900">
-      <TopNav
-        currentRoute={route}
-        onNavigate={handleNavigate}
-        showTopNav={showTopNav}
-      />
-      <div className="flex flex-1 flex-row">
+      <TopNav onNavigate={handleNavigate} showTopNav={showTopNav} />
+      <div className="flex flex-1 flex-row *:bg-stone-100">
         {showLeftNav && (
           <LeftSideNav currentRoute={route} onNavigate={handleNavigate} />
         )}
-        <div className="flex flex-col flex-1 bg-stone-100 p-6 max-h-[calc(100vh-2.5rem)]">
+        <div className="flex flex-col flex-1 p-6 max-h-[calc(100vh-2.5rem)]">
           <PageContent
             route={route}
             handleNavigate={handleNavigate}
@@ -91,12 +87,12 @@ function PageContent({
       setShowRightNav(true);
       return <ManuscriptPage />;
     case ROUTES.settings:
-      setShowTopNav(false);
+      setShowTopNav(true);
       setShowLeftNav(true);
       setShowRightNav(false);
       return <SettingsPage />;
     case ROUTES.dev:
-      setShowTopNav(false);
+      setShowTopNav(true);
       setShowLeftNav(true);
       setShowRightNav(false);
       return <DevPage />;

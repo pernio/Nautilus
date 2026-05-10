@@ -14,7 +14,7 @@ import { ROUTES } from "../../lib/routes";
 const baseNavButtonClassName =
   "app-no-drag flex h-10 w-10 items-center justify-center transition hover:cursor-pointer";
 
-const inactiveNavButtonClassName = `${baseNavButtonClassName} text-stone-500 hover:bg-stone-200 hover:text-stone-900`;
+const inactiveNavButtonClassName = `${baseNavButtonClassName} text-stone-400 hover:text-stone-900`;
 
 const windowButtonClassName =
   "app-no-drag inline-flex h-10 w-10 items-center justify-center text-stone-600 transition hover:bg-stone-200 hover:text-stone-900 hover:cursor-pointer";

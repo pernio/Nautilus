@@ -1,27 +1,33 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFile } from "@fortawesome/free-regular-svg-icons";
-import { faGear, faHammer } from "@fortawesome/free-solid-svg-icons";
+import { faFile, faGear, faHammer } from "@fortawesome/free-solid-svg-icons";
 import type { RouteId } from "../../lib/routes";
 import { ROUTES } from "../../lib/routes";
 
 const baseNavButtonClassName =
   "flex h-10 w-full items-center justify-center transition hover:cursor-pointer";
 
-const activeNavButtonClassName = `${baseNavButtonClassName} bg-stone-200 text-stone-900`;
-const inactiveNavButtonClassName = `${baseNavButtonClassName} text-stone-500 hover:bg-stone-200 hover:text-stone-900`;
+const activeNavButtonClassName = `${baseNavButtonClassName} text-stone-600`;
+const inactiveNavButtonClassName = `${baseNavButtonClassName} text-stone-400 hover:text-stone-600`;
 
 type LeftSideNavProps = {
   currentRoute: RouteId;
   onNavigate: (route: RouteId) => void;
 };
 
-export default function LeftSideNav({ currentRoute, onNavigate }: LeftSideNavProps) {
+export default function LeftSideNav({
+  currentRoute,
+  onNavigate,
+}: LeftSideNavProps) {
   return (
-    <aside className="max-w-10 flex flex-1 flex-col border-r border-stone-200/80 bg-stone-50/95">
+    <aside className="max-w-10 flex flex-1 flex-col border-r border-stone-300">
       <button
         type="button"
         title="Manuscript"
-        className={currentRoute === ROUTES.manuscript ? activeNavButtonClassName : inactiveNavButtonClassName}
+        className={
+          currentRoute === ROUTES.manuscript
+            ? activeNavButtonClassName
+            : inactiveNavButtonClassName
+        }
         onClick={() => onNavigate(ROUTES.manuscript)}
       >
         <FontAwesomeIcon icon={faFile} />
@@ -38,7 +44,11 @@ export default function LeftSideNav({ currentRoute, onNavigate }: LeftSideNavPro
       <button
         type="button"
         title="Settings"
-        className={currentRoute === ROUTES.settings ? activeNavButtonClassName : inactiveNavButtonClassName}
+        className={
+          currentRoute === ROUTES.settings
+            ? activeNavButtonClassName
+            : inactiveNavButtonClassName
+        }
         onClick={() => onNavigate(ROUTES.settings)}
       >
         <FontAwesomeIcon icon={faGear} />
