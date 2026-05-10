@@ -52,9 +52,10 @@ function App() {
         {showLeftNav && (
           <LeftSideNav currentRoute={route} onNavigate={handleNavigate} />
         )}
-        <div className="flex-1 bg-stone-100 p-6">
+        <div className="flex flex-col flex-1 bg-stone-100 p-6 max-h-[calc(100vh-2.5rem)]">
           <PageContent
             route={route}
+            handleNavigate={handleNavigate}
             setShowTopNav={setShowTopNav}
             setShowLeftNav={setShowLeftNav}
             setShowRightNav={setShowRightNav}
@@ -70,6 +71,7 @@ function App() {
 
 type PageContentProps = {
   route: RouteId;
+  handleNavigate: (route: RouteId) => void;
   setShowTopNav: (show: boolean) => void;
   setShowLeftNav: (show: boolean) => void;
   setShowRightNav: (show: boolean) => void;
@@ -77,6 +79,7 @@ type PageContentProps = {
 
 function PageContent({
   route,
+  handleNavigate,
   setShowTopNav,
   setShowLeftNav,
   setShowRightNav,
@@ -102,7 +105,7 @@ function PageContent({
       setShowTopNav(false);
       setShowLeftNav(false);
       setShowRightNav(false);
-      return <HomePage />;
+      return <HomePage onNavigate={handleNavigate} />;
   }
 }
 
