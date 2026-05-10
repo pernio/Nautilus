@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'node:path';
 import started from 'electron-squirrel-startup';
 
@@ -10,10 +10,16 @@ if (started) {
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1280,
+    height: 820,
+    minWidth: 960,
+    minHeight: 640,
+    frame: false,
+    titleBarStyle: 'hidden',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: true,
+      nodeIntegration: false,
     },
   });
 
@@ -29,6 +35,30 @@ const createWindow = () => {
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 };
+
+ipcMain.handle('window:minimize', (event) => {
+  BrowserWindow.fromWebContents(event.sender)?.minimize();
+});
+
+ipcMain.handle('window:maximize-toggle', (event) => {
+  const window = BrowserWindow.fromWebContents(event.sender);
+
+  if (!window) {
+    return false;
+  }
+
+  if (window.isMaximized()) {
+    window.unmaximize();
+    return false;
+  }
+
+  window.maximize();
+  return true;
+});
+
+ipcMain.handle('window:close', (event) => {
+  BrowserWindow.fromWebContents(event.sender)?.close();
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

@@ -1,1 +1,21 @@
 @import "tailwindcss";
+@custom-variant dev (&:where([data-dev="true"] *));
+@custom-variant advanced (&:where([data-advanced="true"] *));
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color-scheme: light;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-drag {
+  -webkit-app-region: drag;
+}
+
+.app-no-drag {
+  -webkit-app-region: no-drag;
+}
